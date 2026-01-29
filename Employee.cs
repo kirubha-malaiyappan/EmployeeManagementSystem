@@ -1,7 +1,7 @@
 ﻿using assessment;
 using System.Xml.Linq;
 
-public class Employee : Person, IWorker
+public class Employee : Person, ICompany
 {
     // Fields
     private int id;
@@ -30,9 +30,9 @@ public class Employee : Person, IWorker
         Console.WriteLine("Hi, I am " + Name + " (Employee)");
     }
 
-    public void Work()
+    public void CompanyName()
     {
-        Console.WriteLine("Employee is working at backend technology");
+        Console.WriteLine("Employee is working at CC");
     }
 
     public void UpdateSalary(double newSalary)
