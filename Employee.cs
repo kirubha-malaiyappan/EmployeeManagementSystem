@@ -1,28 +1,22 @@
-﻿using assessment;
-using System.Xml.Linq;
+﻿using System;
+using assessment;
 
-public class Employee : Person, IWorker
+
+public class Employee : Person, ICompany
 {
-    // Fields
-    private int id;
-    private double salary;
 
     // Properties
-    public int Id
-    {
-        get { return id; }
-    }
+    public int Id { get; }
+    
 
-    public double Salary
-    {
-        get { return salary; }
-    }
+    public double Salary { get; private set; }
+    
 
     public Employee(int id, string name, int age, double salary)
         : base(name, age)
     {
-        this.id = id;
-        this.salary = salary;
+        Id = id;
+        Salary = salary;
     }
 
     public override void Introduce()
@@ -30,13 +24,20 @@ public class Employee : Person, IWorker
         Console.WriteLine("Hi, I am " + Name + " (Employee)");
     }
 
-    public void Work()
+    public override void ShowAge()
     {
-        Console.WriteLine("Employee is working at backend technology");
+        Console.WriteLine("Age: " + age);
     }
+
+
+    public void CompanyName()
+    {
+        Console.WriteLine("Employee is working at CC");
+    }
+ 
 
     public void UpdateSalary(double newSalary)
     {
-        salary = newSalary;
+        Salary = newSalary;
     }
 }
