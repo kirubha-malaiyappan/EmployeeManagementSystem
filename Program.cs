@@ -16,7 +16,8 @@ namespace assessment
                 Console.WriteLine("2. Read Employee");
                 Console.WriteLine("3. Update Salary");
                 Console.WriteLine("4. Delete Employee");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("5. View All Employees");
+                Console.WriteLine("6. Exit");
                 Console.Write("Enter your choice: ");
 
                 choice = Convert.ToInt32(Console.ReadLine());
@@ -85,7 +86,10 @@ namespace assessment
                         break;
 
                     case 5:
-                        Console.WriteLine("Exiting program...");
+                        crud.ReadEmployee();
+                        break;
+                    case 6:
+                        Console.WriteLine("Exiting Program");
                         break;
 
                     default:
@@ -93,7 +97,7 @@ namespace assessment
                         break;
                 }
 
-            } while (choice != 5);
+            } while (choice != 6);
 
             Console.WriteLine("Program ended successfully.");
         }

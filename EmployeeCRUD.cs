@@ -20,8 +20,19 @@ namespace assessment
                 Console.WriteLine("Employee storage full");
             }
         }
+        public override void ReadEmployee()
+        {
+            for (int i = 0; i < count; i++)
+            {
 
-   
+                    Console.WriteLine(employees[i].Name);
+                    return;
+                
+            }
+            Console.WriteLine("Employee not found");
+        }
+
+
         public override void ReadEmployee(int id)
         {
             for (int i = 0; i < count; i++)
