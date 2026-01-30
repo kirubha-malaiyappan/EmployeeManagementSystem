@@ -4,10 +4,13 @@ namespace assessment
 {
     public abstract class Person
     {
+        // Fields
         protected int age;
 
-        public string Name { get; private set; }
+        // Properties
+        public string Name { get; protected set; }
 
+        // Protected constructor (cannot create Person object)
         protected Person(string name, int age)
         {
             Name = name;
@@ -15,10 +18,6 @@ namespace assessment
         }
 
         public abstract void Introduce();
-
-        public void ShowAge()
-        {
-            Console.WriteLine("Age: " + age);
-        }
+        public abstract void ShowAge();
     }
 }

@@ -1,49 +1,76 @@
-﻿public class EmployeeCRUD
+﻿using System;
+
+namespace assessment
 {
-    private Employee? employee;
-    private bool isCreated = false;
-
-    public void CreateEmployee(Employee emp)
+    public class EmployeeCRUD :EmployeeOperations
     {
-        if (!isCreated)
-        {
-            employee = emp;
-            isCreated = true;
-            Console.WriteLine("Employee created");
-        }
-        else
-        {
-            Console.WriteLine("Employee already exists");
-        }
-    }
+        private Employee[] employees = new Employee[10];
+        private int count = 0;
 
-    public void ReadEmployee()
-    {
-        if (isCreated && employee != null)
+        public override void  CreateEmployee(Employee emp)
         {
-            employee.Introduce();
-            employee.ShowAge();
-            Console.WriteLine("Salary: " + employee.Salary);
+            if (count < employees.Length)
+            {
+                employees[count] = emp;
+                count++;
+                Console.WriteLine("Employee created");
+            }
+            else
+            {
+                Console.WriteLine("Employee storage full");
+            }
         }
-        else
-        {
-            Console.WriteLine("No employee found");
-        }
-    }
 
-    public void UpdateEmployee(double newSalary)
-    {
-        if (isCreated && employee != null)
+   
+        public override void ReadEmployee(int id)
         {
-            employee.UpdateSalary(newSalary);
-            Console.WriteLine("Salary updated");
+            for (int i = 0; i < count; i++)
+            {
+                if (employees[i].Id == id)
+                {
+                    employees[i].Introduce();
+                    employees[i].ShowAge();
+                    Console.WriteLine("Salary: " + employees[i].Salary);
+                    return;
+                }
+            }
+            Console.WriteLine("Employee not found");
         }
-    }
 
-    public void DeleteEmployee()
-    {
-        employee = null;
-        isCreated = false;
-        Console.WriteLine("Employee deleted");
+       
+        public override void UpdateEmployee(int id, double newSalary)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                if (employees[i].Id == id)
+                {
+                    employees[i].UpdateSalary(newSalary);
+                    Console.WriteLine("Employee Salary Updated");
+                    return;
+                }
+            }
+            Console.WriteLine("Employee not found");
+        }
+
+     
+        public override void DeleteEmployee(int id)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                if (employees[i].Id == id)
+                {
+                    for (int j = i; j < count - 1; j++)
+                    {
+                        employees[j] = employees[j + 1];
+                    }
+
+                    employees[count - 1] = null;
+                    count--;
+                    Console.WriteLine("Employee deleted");
+                    return;
+                }
+            }
+            Console.WriteLine("Employee not found");
+        }
     }
 }
